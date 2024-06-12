@@ -121,7 +121,7 @@ public class PNLineChart: UIView{
         }
     }
     
-    var pathPoints: NSMutableArray = []
+    public var pathPoints: NSMutableArray = []
     
     // X-Axis Info
     public var xLabelWidth: CGFloat = 0
@@ -152,26 +152,26 @@ public class PNLineChart: UIView{
     
     // String Format for float values in y labels.
     public var yLabelFormat = "%1.1f"
-    var chartLineArray: NSMutableArray = []
-    var chartPointArray: NSMutableArray = []
+    public var chartLineArray: NSMutableArray = []
+    public var chartPointArray: NSMutableArray = []
     
-    var chartPaths: NSMutableArray = []
-    var pointPaths: NSMutableArray = []
+    public var chartPaths: NSMutableArray = []
+    public var pointPaths: NSMutableArray = []
     
     // Initialize Methods
     
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         setDefaultValues()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: Functions
     
-    func setDefaultValues() {
+    public func setDefaultValues() {
         self.backgroundColor = UIColor.white
         self.clipsToBounds = true
         self.chartLineArray = NSMutableArray()
@@ -193,7 +193,7 @@ public class PNLineChart: UIView{
         self.touchKeyPoint(touches: touches as NSSet, withEvent: event!)
     }
     
-    func touchPoint(touches: NSSet, withEvent event: UIEvent) {
+    public func touchPoint(touches: NSSet, withEvent event: UIEvent) {
         let touch: UITouch = touches.anyObject() as! UITouch
         let touchPoint = touch.location(in: self)
         
@@ -216,7 +216,7 @@ public class PNLineChart: UIView{
         }
     }
     
-    func touchKeyPoint(touches: NSSet, withEvent event: UIEvent) {
+    public func touchKeyPoint(touches: NSSet, withEvent event: UIEvent) {
         let touch: UITouch = touches.anyObject() as! UITouch
         let touchPoint = touch.location(in: self)
         
@@ -239,7 +239,7 @@ public class PNLineChart: UIView{
     }
     
     // This method will be called and stroke the line in animation
-    func strokeChart() {
+    public func strokeChart() {
         let chartPaths = NSMutableArray()
         let pointPaths = NSMutableArray()
         
@@ -453,24 +453,24 @@ public class PNLineChart: UIView{
 }
 
 extension PNLineChart {
-    func heightOfString(text: NSString, width: CGFloat, font: UIFont) -> CGFloat {
+    public func heightOfString(text: NSString, width: CGFloat, font: UIFont) -> CGFloat {
         let size = CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)
 		let rect = text.boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font: font], context: nil)
         return rect.size.height
     }
     
-    func drawTextInContext(ctx: CGContext, text: NSString, rect: CGRect, font: UIFont) {
+    public func drawTextInContext(ctx: CGContext, text: NSString, rect: CGRect, font: UIFont) {
         let priceParagraphStyle: NSMutableParagraphStyle = NSParagraphStyle.default as! NSMutableParagraphStyle
         priceParagraphStyle.lineBreakMode = .byTruncatingTail
         priceParagraphStyle.alignment = .left
 		text.draw(in: rect, withAttributes: [NSAttributedString.Key.paragraphStyle: priceParagraphStyle])
     }
     
-    func userClickedOnLineKeyPoint(point: CGPoint, lineIndex: Int, keyPointIndex: Int) {
+    public func userClickedOnLineKeyPoint(point: CGPoint, lineIndex: Int, keyPointIndex: Int) {
         print("Click Key on line \(point.x), \(point.y) line index is \(lineIndex) and point index is \(keyPointIndex)")
     }
     
-    func userClickedOnLinePoint(point: CGPoint, lineIndex: Int) {
+    public func userClickedOnLinePoint(point: CGPoint, lineIndex: Int) {
         print("Click Key on line \(point.x), \(point.y) line index is \(lineIndex)")
     }
 }

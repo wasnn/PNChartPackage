@@ -8,15 +8,15 @@
 
 import UIKit
 public class PNBarChart: UIView {
-    var bars = NSMutableArray()
-    var xLabelWidth: CGFloat!
-    var yValueMax: CGFloat!
-    var strokeColor = PNGreen
-    var strokeColors: Array<Any>!
-    var xLabelHeight: CGFloat = 11
-    var yLabelHeight: CGFloat = 20
-    var labels: NSMutableArray = []
-    var xLabels = [String]() {
+    public var bars = NSMutableArray()
+    public var xLabelWidth: CGFloat!
+    public var yValueMax: CGFloat!
+    public var strokeColor = PNGreen
+    public var strokeColors: Array<Any>!
+    public var xLabelHeight: CGFloat = 11
+    public var yLabelHeight: CGFloat = 20
+    public var labels: NSMutableArray = []
+    public var xLabels = [String]() {
         didSet {
             if self.showLabel {
                 self.xLabelWidth = (self.frame.size.width - self.chartMargin * 2.0 - yChartLabelWidth) / CGFloat(self.xLabels.count)
@@ -24,8 +24,8 @@ public class PNBarChart: UIView {
         }
     }
     
-    var yLabels = [String]()
-    var yValues = [CGFloat]() {
+    public var yLabels = [String]()
+    public var yValues = [CGFloat]() {
         didSet {
             if self.yMaxValue != nil {
                 self.yValueMax = self.yMaxValue
@@ -35,37 +35,37 @@ public class PNBarChart: UIView {
             self.xLabelWidth = (self.frame.size.width - self.chartMargin * 2 - yChartLabelWidth) / CGFloat(self.yValues.count)
         }
     }
-    var yChartLabelWidth: CGFloat = 18
-    var chartMargin: CGFloat = 15
-    var showLabel = true
-    var showChartBorder = false
-    var chartBottomLine = CAShapeLayer()
-    var chartLeftLine = CAShapeLayer()
-    var barRadius: CGFloat = 0
-    var barWidth: CGFloat!
-    var labelMarginTop: CGFloat = 0
-    var barBackgroundColor = PNLightGrey
-    var labelTextColor = UIColor.darkGray
-    var labelTextFont = UIFont(name: "Avenir-Medium", size: 11.0)
-    var xLabelSkip = 1
-    var yLabelSum = 4
+    public var yChartLabelWidth: CGFloat = 18
+    public var chartMargin: CGFloat = 15
+    public var showLabel = true
+    public var showChartBorder = false
+    public var chartBottomLine = CAShapeLayer()
+    public var chartLeftLine = CAShapeLayer()
+    public var barRadius: CGFloat = 0
+    public var barWidth: CGFloat!
+    public var labelMarginTop: CGFloat = 0
+    public var barBackgroundColor = PNLightGrey
+    public var labelTextColor = UIColor.darkGray
+    public var labelTextFont = UIFont(name: "Avenir-Medium", size: 11.0)
+    public var xLabelSkip = 1
+    public var yLabelSum = 4
     // Max value of the chart
-    var yMaxValue: CGFloat!
+    public var yMaxValue: CGFloat!
     // Min value of the chart
-    var yMinValue: CGFloat!
-    var animationType: AnimationType = .Default
+    public var yMinValue: CGFloat!
+    public var animationType: AnimationType = .Default
     // Initialize Methods
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = PNLightGrey
         self.clipsToBounds = true
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func strokeChart() {
+    public func strokeChart() {
         self.viewCleanUpForCollection(arr: self.labels)
         
         if self.showLabel {
@@ -192,12 +192,12 @@ public class PNBarChart: UIView {
 }
 
 extension PNBarChart {
-    enum AnimationType {
+    public enum AnimationType {
         case Default
         case Waterfall
     }
     
-    func getYValueMax(yLabels: [CGFloat]) {
+    public func getYValueMax(yLabels: [CGFloat]) {
         let max = yLabels.max()
         if max == 0 {
             self.yValueMax = self.yMinValue
@@ -206,7 +206,7 @@ extension PNBarChart {
         }
     }
     
-    func viewCleanUpForCollection(arr: NSMutableArray) {
+    public func viewCleanUpForCollection(arr: NSMutableArray) {
         if arr.count > 0 {
             for object in arr {
                 let view = object as! UIView
@@ -216,7 +216,7 @@ extension PNBarChart {
         }
     }
     
-    func barColorAtIndex(index: Int) -> UIColor {
+    public func barColorAtIndex(index: Int) -> UIColor {
         if self.strokeColors.count == self.yValues.count {
             return self.strokeColors[index] as! UIColor
         } else {
@@ -229,7 +229,7 @@ extension PNBarChart {
         super.touchesBegan(touches, with: event)
     }
     
-    func touchPoint(_ touches: Set<UITouch>, with event: UIEvent?) {
+    public func touchPoint(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first
         let touchPoint = touch?.location(in: self)
         let subview = hitTest(touchPoint!, with: nil)
@@ -239,7 +239,7 @@ extension PNBarChart {
         }
     }
     
-    func userClickedOnBarChartIndex(barIndex: Int) {
+    public func userClickedOnBarChartIndex(barIndex: Int) {
         print("Click on bar \(barIndex)")
     }
 }

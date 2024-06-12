@@ -11,20 +11,20 @@ import UIKit
 public class PNBar: UIView {
 
     // Time brfore bar starts to animate
-    var startAnimationTime: Double = 0
-    var chartLine: CAShapeLayer = {
+    public var startAnimationTime: Double = 0
+    public var chartLine: CAShapeLayer = {
         return CAShapeLayer()
         
     }()
     
-    var barColor = PNFreshGreen
-    var barRadius: CGFloat = 0 {
+    public var barColor = PNFreshGreen
+    public var barRadius: CGFloat = 0 {
         didSet {
             layer.cornerRadius = self.barRadius
         }
     }
     
-    var grade: CGFloat = 0 {
+    public var grade: CGFloat = 0 {
         didSet {
             UIGraphicsBeginImageContext(self.frame.size)
             let path = CABasicAnimation(keyPath: "strokeEnd")
@@ -48,7 +48,7 @@ public class PNBar: UIView {
         }
     }
     
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         self.chartLine = CAShapeLayer()
 		self.chartLine.lineCap = CAShapeLayerLineCap.butt
@@ -61,7 +61,7 @@ public class PNBar: UIView {
         self.barRadius = 10
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -72,14 +72,14 @@ public class PNBar: UIView {
         context.addRect(rect)
     }
     
-    func delay(delay: Double, closure: @escaping () -> ()) {
+    public func delay(delay: Double, closure: @escaping () -> ()) {
         DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
             () -> () in
             closure()
         }
     }
     
-    func rollBack() {
+    public func rollBack() {
         UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveEaseInOut, animations: ({
             self.chartLine.strokeColor = UIColor.clear.cgColor
         }), completion: nil)

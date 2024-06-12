@@ -9,67 +9,67 @@
 import UIKit
 
 public class PNPieChart: PNGenericChart {
-    lazy var items: [PNPieChartDataItem] = {
+    public lazy var items: [PNPieChartDataItem] = {
         return [PNPieChartDataItem]()
     }()
     
-    var endPercentages = [CGFloat]()
-    var contentView = UIView()
-    var pieLayer: CAShapeLayer = {
+    public var endPercentages = [CGFloat]()
+    public var contentView = UIView()
+    public var pieLayer: CAShapeLayer = {
         return CAShapeLayer()
     }()
     
-    var descriptionLabels = NSMutableArray()
-    var sectorHighlight: CAShapeLayer = {
+    public var descriptionLabels = NSMutableArray()
+    public var sectorHighlight: CAShapeLayer = {
         return CAShapeLayer()
     }()
     
-    var selectedItems = NSMutableDictionary()
-    var descriptionTextFont: UIFont = {
+    public var selectedItems = NSMutableDictionary()
+    public var descriptionTextFont: UIFont = {
         return UIFont(name: "Avenir-Medium", size: 14)!
     }()
-    var descriptionTextColor: UIColor = {
+    public var descriptionTextColor: UIColor = {
         return UIColor.white
     }()
-    var descriptionTextShadowColor: UIColor = {
+    public var descriptionTextShadowColor: UIColor = {
         return UIColor.darkGray
     }()
-    var descriptionTextShadowOffset: CGSize = {
+    public var descriptionTextShadowOffset: CGSize = {
         return CGSize(width: 0, height: 1)
     }()
-    var duration: TimeInterval = 1.0
+    public var duration: TimeInterval = 1.0
     
-    var hideValues: Bool = true
-    var showOnlyValues: Bool = true
-    var showAbsoluteValues: Bool = true
-    var showTextShadow: Bool = true
+    public var hideValues: Bool = true
+    public var showOnlyValues: Bool = true
+    public var showAbsoluteValues: Bool = true
+    public var showTextShadow: Bool = true
     
     // Hide percentage labels less than cutoff value
-    var labelPercentageCutoff: CGFloat = 0
+    public var labelPercentageCutoff: CGFloat = 0
     
     // Default as true
-    var shouldHighlightSectorOnTouch: Bool = true
+    public var shouldHighlightSectorOnTouch: Bool = true
     
     // Current outer radius. Override recompute() to change this.
-    lazy var outerCircleRadius: CGFloat = {
+    public lazy var outerCircleRadius: CGFloat = {
         return self.bounds.size.width / 2
     }()
     
     // Current inner radius. Override recompute() to change this.
-    lazy var innerCircleRadius: CGFloat = {
+    public lazy var innerCircleRadius: CGFloat = {
         return self.bounds.size.width / 6
     }()
     
     // Multiple selection
-    var enableMultipleSelection: Bool = true
+    public var enableMultipleSelection: Bool = true
     
-    init(frame: CGRect, items: [PNPieChartDataItem]) {
+    public init(frame: CGRect, items: [PNPieChartDataItem]) {
         super.init(frame: frame)
         self.items = items
         self.baseInit()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -82,7 +82,7 @@ public class PNPieChart: PNGenericChart {
         self.strokeChart()
     }
     
-    func baseInit() {
+    public func baseInit() {
         self.shouldHighlightSectorOnTouch = true
         self.enableMultipleSelection = true
         self.labelPercentageCutoff = 0
@@ -94,7 +94,7 @@ public class PNPieChart: PNGenericChart {
         self.loadDefault()
     }
     
-    func loadDefault() {
+    public func loadDefault() {
         var currentTotal: CGFloat = 0;
         var total: CGFloat = 0
         for index in 0..<self.items.count {
@@ -117,12 +117,12 @@ public class PNPieChart: PNGenericChart {
         self.contentView.layer.addSublayer(self.pieLayer)
     }
 
-    func recompute() {
+    public func recompute() {
         self.outerCircleRadius = self.bounds.size.width / 2
         self.innerCircleRadius = self.bounds.size.width / 6
     }
     
-    func strokeChart() {
+    public func strokeChart() {
         self.loadDefault()
         self.recompute()
         for index in 0..<self.items.count {
@@ -151,7 +151,7 @@ public class PNPieChart: PNGenericChart {
 }
 
 extension PNPieChart {
-    func startPercentageForItemAtIndex(index: Int) -> CGFloat {
+    public func startPercentageForItemAtIndex(index: Int) -> CGFloat {
         if index == 0 {
             return 0
         } else {
@@ -159,15 +159,15 @@ extension PNPieChart {
         }
     }
     
-    func endPercentageForItemAtIndex(index: Int) -> CGFloat {
+    public func endPercentageForItemAtIndex(index: Int) -> CGFloat {
         return self.endPercentages[index]
     }
     
-    func ratioForItemAtIndex(index: Int) -> CGFloat {
+    public func ratioForItemAtIndex(index: Int) -> CGFloat {
         return self.endPercentageForItemAtIndex(index: index) - self.startPercentageForItemAtIndex(index: index)
     }
     
-    func newCircileLayerWithRadius(radius: CGFloat, borderWidth: CGFloat, fillColor: UIColor, borderColor: UIColor, startPercentage: CGFloat, endPercentage: CGFloat) -> CAShapeLayer {
+    public func newCircileLayerWithRadius(radius: CGFloat, borderWidth: CGFloat, fillColor: UIColor, borderColor: UIColor, startPercentage: CGFloat, endPercentage: CGFloat) -> CAShapeLayer {
         let circle = CAShapeLayer(layer: self.layer)
         
         let center = CGPoint(x: self.bounds.midX, y: self.bounds.midY)
@@ -181,14 +181,14 @@ extension PNPieChart {
         return circle
     }
     
-    func maskChart() {
+    public func maskChart() {
         let radius = self.innerCircleRadius + (self.outerCircleRadius - self.innerCircleRadius) / 2
         let borderWidth = self.outerCircleRadius - self.innerCircleRadius
         let maskLayer = self.newCircileLayerWithRadius(radius: radius, borderWidth: borderWidth, fillColor: UIColor.clear, borderColor: UIColor.black, startPercentage: 0, endPercentage: 1)
         self.pieLayer.mask = maskLayer
     }
     
-    func descriptionLabelForItemAtIndex(index: Int) -> UILabel? {
+    public func descriptionLabelForItemAtIndex(index: Int) -> UILabel? {
         let currentDateItem = self.items[index]
         let distance = self.innerCircleRadius + (self.outerCircleRadius - self.innerCircleRadius) / 2
         let centerPercentage = (self.startPercentageForItemAtIndex(index: index) + self.endPercentageForItemAtIndex(index: index)) / 2
@@ -235,7 +235,7 @@ extension PNPieChart {
         return descriptionLabel
     }
     
-    func addAnimationIfNeeded() {
+    public func addAnimationIfNeeded() {
         if self.displayAnimation {
             let animation = CABasicAnimation(keyPath: "strokeEnd")
             animation.duration = duration
@@ -247,7 +247,7 @@ extension PNPieChart {
         }
     }
     
-    func findPercentageOfAngleInCircle(center: CGPoint, fromPoint reference: CGPoint) -> CGFloat {
+    public func findPercentageOfAngleInCircle(center: CGPoint, fromPoint reference: CGPoint) -> CGFloat {
         let disY = Float(reference.y - center.y)
         let disX = Float(reference.x - center.x)
         let angleOfLine = atanf((disY) / (disX))
@@ -260,7 +260,7 @@ extension PNPieChart {
         }
     }
     
-    func didTouchAt(touchLocation: CGPoint) {
+    public func didTouchAt(touchLocation: CGPoint) {
         let circleCenter = CGPoint(x: self.contentView.bounds.size.width / 2.0, y: self.contentView.bounds.size.height / 2.0)
         let distanceY = Float(touchLocation.y - circleCenter.y)
         let distanceX = Float(touchLocation.x - circleCenter.x)

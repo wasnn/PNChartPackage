@@ -17,7 +17,7 @@ public class PNGenericChart: UIView {
     var labelRowsInSerialMode: Int!
     var displayAnimation: Bool = false
     
-    func setupDefaultValues() {
+    public func setupDefaultValues() {
         hasLegend = true
         legendPosition = .Bottom
         legendStyle = .Stacked
@@ -25,12 +25,12 @@ public class PNGenericChart: UIView {
         displayAnimation = true
     }
     
-    func getLegendWIthMaxWidth(maxWidth: Float) -> UIView! {
+    public func getLegendWIthMaxWidth(maxWidth: Float) -> UIView! {
         //self.doesNotRecognizeSelector(_cmd)
         return nil
     }
     
-    func setLabelRowsInSerialMode(num: Int) {
+    public func setLabelRowsInSerialMode(num: Int) {
         if legendStyle == .Serial {
             labelRowsInSerialMode = num
         } else {
@@ -40,14 +40,14 @@ public class PNGenericChart: UIView {
 }
 
 extension PNGenericChart {
-    enum PNLegendPosition: Int {
+    public enum PNLegendPosition: Int {
         case Top = 0
         case Bottom = 1
         case Left = 2
         case Right = 3
     }
     
-    enum PNLegendItemStyle: Int {
+    public enum PNLegendItemStyle: Int {
         case Stacked = 0
         case Serial = 1
     }

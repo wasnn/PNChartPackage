@@ -9,22 +9,22 @@
 import UIKit
 
 public class PNPieChartDataItem: NSObject {
-    var color: UIColor?
-    var text: String?
-    var value: CGFloat?
+    public var color: UIColor?
+    public var text: String?
+    public var value: CGFloat?
     
-    init(dateColor color: UIColor, description text: String) {
+    public init(dateColor color: UIColor, description text: String) {
         self.color = color
         self.text = text
     }
     
-    init(dateValue value: CGFloat, dateColor color: UIColor, description text: String) {
+    public init(dateValue value: CGFloat, dateColor color: UIColor, description text: String) {
         self.value = value
         self.color = color
         self.text = text
     }
     
-    func setValue(newValue: CGFloat) {
+    public func setValue(newValue: CGFloat) {
         guard newValue > 0 else {
             print("Value should >= 0")
             return

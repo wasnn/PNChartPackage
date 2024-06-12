@@ -9,8 +9,8 @@
 import UIKit
 
 public class PNValue{
-    var point: CGPoint = CGPoint()
-    init(point: CGPoint)
+    public var point: CGPoint = CGPoint()
+    public init(point: CGPoint)
     {
         self.point = point
     }
