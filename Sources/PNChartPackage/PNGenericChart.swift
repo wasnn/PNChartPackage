@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PNGenericChart: UIView {
+public class PNGenericChart: UIView {
     var hasLegend: Bool!
     var legendPosition: PNLegendPosition!
     var legendStyle: PNLegendItemStyle!

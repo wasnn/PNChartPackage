@@ -7,8 +7,7 @@
 //
 
 import UIKit
-
-class PNBarChart: UIView {
+public class PNBarChart: UIView {
     var bars = NSMutableArray()
     var xLabelWidth: CGFloat!
     var yValueMax: CGFloat!
@@ -225,7 +224,7 @@ extension PNBarChart {
         }
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.touchPoint(touches, with: event)
         super.touchesBegan(touches, with: event)
     }

@@ -1,7 +1,7 @@
 import XCTest
 @testable import PNChartPackage
 
-final class PNChartPackageTests: XCTestCase {
+final public class PNChartPackageTests: XCTestCase {
     func testExample() throws {
         // XCTest Documentation
         // https://developer.apple.com/documentation/xctest

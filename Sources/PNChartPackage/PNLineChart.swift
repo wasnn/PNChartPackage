@@ -9,7 +9,7 @@
 import UIKit
 import QuartzCore
 
-class PNLineChart: UIView{
+public class PNLineChart: UIView{
     public var xLabels: NSArray = []{
         didSet {
             if self.showLabel {
@@ -183,12 +183,12 @@ class PNLineChart: UIView{
         self.chartCavanHeight = self.frame.size.height - (chartMargin * 2)
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.touchPoint(touches: touches as NSSet, withEvent: event!)
         self.touchKeyPoint(touches: touches as NSSet, withEvent: event!)
     }
     
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+    public override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.touchPoint(touches: touches as NSSet, withEvent: event!)
         self.touchKeyPoint(touches: touches as NSSet, withEvent: event!)
     }
@@ -384,7 +384,7 @@ class PNLineChart: UIView{
         }
     }
     
-    override func draw(_ rect: CGRect) {
+    public override func draw(_ rect: CGRect) {
         if self.showCoordinateAxis {
             let yAxisOffset: CGFloat = 10
             let ctx = UIGraphicsGetCurrentContext()

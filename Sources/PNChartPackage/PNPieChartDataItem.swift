@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PNPieChartDataItem: NSObject {
+public class PNPieChartDataItem: NSObject {
     var color: UIColor?
     var text: String?
     var value: CGFloat?

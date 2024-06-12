@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PNValue{
+public class PNValue{
     var point: CGPoint = CGPoint()
     init(point: CGPoint)
     {

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PNBar: UIView {
+public class PNBar: UIView {
 
     // Time brfore bar starts to animate
     var startAnimationTime: Double = 0
@@ -65,7 +65,7 @@ class PNBar: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func draw(_ rect: CGRect) {
+    public override func draw(_ rect: CGRect) {
         // Draw BackGround
         let context = UIGraphicsGetCurrentContext()!
         context.setFillColor((self.backgroundColor?.cgColor)!)
